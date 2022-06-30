@@ -9,6 +9,7 @@ const BusinessItem = React.memo(() => {
   // console.log(useParams());
   const businessItemID = useParams().id;
   const { state } = useLocation();
+  console.log(state)
   const [loading, setLoading] = useState(true);
   const [businessItem, setBusinessItem] = useState([]);
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
@@ -54,13 +55,17 @@ const BusinessItem = React.memo(() => {
           <p className='title'>Address</p>
           <p className='content'>
             {loading && 'loading...'}
-            {!loading && businessItem.address.number}
+            {!loading && (businessItem.address.number + ' ' + businessItem.address.street)}<br/>
+            {!loading && (businessItem.address.city + ', ' + businessItem.address.zip)}
           </p>
         </div>
 
         <div className='contact'>
           <p className='title'>Contact</p>
-          <p className='content'></p>
+          <p className='content'>
+            {!loading && (businessItem.phone)}<br/>
+            {!loading && (businessItem.email)}
+          </p>
         </div>
 
         <div className='nearby-places'>
